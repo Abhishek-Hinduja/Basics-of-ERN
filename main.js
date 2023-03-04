@@ -1,10 +1,18 @@
 var http = require("http");
+var fs = require("fs")
 
 var port = 3100
 var server = http.createServer(function(req,res){
     if (req.method === "GET"){
         if (req.url === "/"){
-            res.end("Its an Home page")
+            fs.readFile("./index.html", "utf-8", function(err,data){
+                if (err){
+                    res.end("Ërror Occured")
+                }
+                else{
+                    res.end(data)
+                }
+            })
         } 
         else if(req.url === "/about"){
             res.end("Its an About Page")
