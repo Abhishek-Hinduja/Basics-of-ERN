@@ -8,13 +8,13 @@ http.createServer(function(req,res){
 
     if (method === "GET"){      
         if (url === "/"){
-            fs.readFile("./todo/index.html", "utf-8", function(err,data){
+            fs.readFile("./todo/indexing.html", "utf-8", function(err,data){
                 res.end(data)
                 
             })
         }
         else if (url === "/script.js"){
-            fs.readFile("./todo/script.js", "utf-8", function(err,data){
+            fs.readFile("./todo/scriptt.js", "utf-8", function(err,data){
                 res.end(data)
                 
             })
