@@ -1,25 +1,20 @@
-var http = require("http")
+var express = require("express")
 var fs = require("fs")
 
-http.createServer(function(req,res){
-    var method = req.method
-    var url = req.url
-    
+var app = express()
 
-    if (method === "GET"){      
-        if (url === "/"){
-            fs.readFile("./todo/indexing.html", "utf-8", function(err,data){
-                res.end(data)
-                
-            })
-        }
-        else if (url === "/script.js"){
-            fs.readFile("./todo/scriptt.js", "utf-8", function(err,data){
-                res.end(data)
-                
-            })
-        }
-    }
-}).listen(3100, ()=>{
-    console.log("Server is Running on 3100")
+app.get("/", function(req,res){
+    fs.readFile("./todo/indexing.html", "utf-8", function(err,data){
+        res.end(data)
+    })
+})
+
+app.get("/scriptt.js", function(req,res){
+    fs.readFile("./todo/scriptt.js", "utf-8", function(err,data){
+        res.end(data)
+    })
+})
+
+app.listen(3000, function(){
+    console.log("Server is running on 3000")
 })
