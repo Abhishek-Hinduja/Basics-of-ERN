@@ -2,19 +2,12 @@ var express = require("express")
 var fs = require("fs")
 
 var app = express()
+app.use( logger )
+
 app.use(express.json())
+app.use(express.static("todo"))
 
-app.get("/", function(req,res){
-    fs.readFile("./todo/indexing.html", "utf-8", function(err,data){
-        res.end(data)
-    })
-})
 
-app.get("/scriptt.js", function(req,res){
-    fs.readFile("./todo/scriptt.js", "utf-8", function(err,data){
-        res.end(data)
-    })
-})
 
 app.post("/save", function(req,res){
     
@@ -42,6 +35,13 @@ app.get("/todo", function(req,res){
         res.end(data)
     })
 })
+
+function logger(req,res,next){
+    console.log("Request received at ", Date.now())
+    console.log("Request received at ", req.url)
+    console.log("Request received at ", req.method)
+    next()
+}
 
 app.listen(3000, function(){
     console.log("Server is running on 3000")
